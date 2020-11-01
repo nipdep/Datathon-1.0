@@ -68,9 +68,19 @@ def getPDF(pdf_name):
             clean(Directory + '/data/District/' + month + '-' + day + 'DC.csv',
                   Directory + '/data/Hospital/' + month + '-' + day + 'hos.csv',
                   Directory + '/data/Cumulative/' + month + '-' + day + 'cumu.csv', 1)
+
+            return ({'district_file':Directory + '/data/District/' + month + '-' + day + 'DC.csv',
+                  'hospital_file':Directory + '/data/Hospital/' + month + '-' + day + 'hos.csv',
+                  'cumulative_file':Directory + '/data/Cumulative/' + month + '-' + day + 'cumu.csv',
+                    'type':1,
+                     'success':True})
         else:
-            print('different')
+            print('different type 1')
             print(dataframe)
+            return ({'success': False,
+                     'pdf_name':pdf_name,
+                     'fail_type':'different type 1'})
+
     elif (len(table) == 3):
 
         dataframe = table[0].df
@@ -101,12 +111,25 @@ def getPDF(pdf_name):
             clean(Directory + '/data/District/' + month + '-' + day + 'DC.csv',
                   Directory + '/data/Hospital/' + month + '-' + day + 'hos.csv',
                   Directory + '/data/Cumulative/' + month + '-' + day + 'cumu.csv', 3)
+
+            return({'district_file':Directory + '/data/District/' + month + '-' + day + 'DC.csv',
+                   'hospital_file':Directory + '/data/Hospital/' + month + '-' + day + 'hos.csv',
+                   'cumulative_file':Directory + '/data/Cumulative/' + month + '-' + day + 'cumu.csv',
+                    'type':3,
+                    'success':True})
+
         else:
-            print('different')
+            print('different type 3')
             print(dataframe)
+            return({'success':False,
+                     'pdf_name':pdf_name,
+                     'fail_type':'different type 3'})
 
     else:
         print('new case')
+        return ({'success': False,
+                'pdf_name':pdf_name,
+                 'fail_type':'new case'})
     # print(district_count_dataframe)
 
     '''
