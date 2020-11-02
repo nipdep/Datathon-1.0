@@ -5,9 +5,10 @@ import luigi
 from luigi.contrib import mysqldb
 from luigi.util import requires, inherits, common_params
 
-Directory='F:/Deeplearning/Datathon-1.0'
-pdf_dir = Directory+'/data/daily_pdf'
-log_dir = Directory+'/src/DataPipeLine/Flow/logs'
+Directory = 'F:/Deeplearning/Datathon-1.0'
+pdf_dir = Directory + '/data/daily_pdf'
+log_dir = Directory + '/src/DataPipeLine/Flow/logs'
+
 
 class WebScrapingTransform(luigi.Task):
     def __init__(self, *args, **kwargs):
@@ -28,11 +29,10 @@ class WebScrapingTransform(luigi.Task):
         """ required transforms """
 
         """ APPLY TRANSFORM IF ANY """
-        details = {'status':'no transforms yet'}
+        details = {'status': 'no transforms yet'}
 
         try:
             with self.output().open(mode='w') as f:
                 json.dump(details, f)
         except:
             print('error')
-

@@ -8,6 +8,30 @@ incomplete_url = "http://www.epid.gov.lk/web/images/pdf/corona_virus_report/sitr
 today = datetime.datetime.now()
 current_date = [today.month,today.day]
 
+def dateformat(currentdate=True):
+    if(currentdate):
+        today = datetime.datetime.now()
+        month = today.month
+        day = today.day
+
+    else:
+        selected = datetime.datetime.now() - datetime.timedelta(10)
+        month = selected.month
+        day = selected.day
+
+    if month < 10:
+        month = '0' + str(month)
+    else:
+        month = str(month)
+
+
+    if day < 10:
+        day = '0' + str(day)
+    else:
+        day = str(day)
+
+    return ([month, day])
+
 Directory='F:/Deeplearning/Datathon-1.0'
 
 
@@ -26,7 +50,9 @@ for link in soup.select('p a'):
         continue
 
     filename = href.rsplit('/', 1)[-1]
-    if (filename == 'sitrep-sl-en-30-03_10.pdf'):
+    #print('sitrep-sl-sin-'+dateformat(currentdate=False)[1]+'-'+dateformat(currentdate=False)[0]+'_10.pdf')
+    print(filename)
+    if (filename == 'sitrep-sl-sin-'+dateformat(currentdate=False)[1]+'-'+dateformat(currentdate=False)[0]+'_10.pdf' or filename == 'sitrep-sl-en-'+dateformat(currentdate=False)[1]+'-'+dateformat(currentdate=False)[0]+'_10.pdf'or filename == 'sitrep-gl-en-'+dateformat(currentdate=False)[1]+'-'+dateformat(currentdate=False)[0]+'_10.pdf' or filename == 'sitrep-sl-sin-30-03_10.pdf'):
         break
 
     parts = filename.split('-')

@@ -11,7 +11,8 @@ pdf_dir = Directory+'/data/daily_pdf'
 log_dir = Directory+'/src/DataPipeLine/Flow/logs'
 
 
-class WebScrapingTransform(luigi.Task):
+
+class WebScrapingLoad(luigi.Task):
     def __init__(self, *args, **kwargs):
         """ something if needed"""
         super().__init__(*args, **kwargs)

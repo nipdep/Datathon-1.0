@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 import json
+import string
 
 Directory = 'F:/Deeplearning/Datathon-1.0'
 def split(word):
@@ -10,7 +11,7 @@ def DateDistric():
     if (not os.path.exists(Directory + '/data/DateDistric.csv')):
         # date_distric_df = pd.DataFrame(columns=['ID','Date','District','Suspected_Local','Suspected_Foreign','Suspected_Total','Temperature','Immobility']).to_csv(Directory+'/data/DateDistric.csv')
         date_distric_df = pd.DataFrame(
-            columns=['ID', 'Date', 'District', 'Suspected_Local', 'Suspected_Foreign', 'Suspected_Total'])
+            columns=['ID', 'Date', 'District', 'Suspected_Local', 'Suspected_Foreign', 'Suspected_Total','TotalInfected'])
         #date_distric_df.to_csv(Directory + '/data/DateDistric.csv')
     else:
         date_distric_df = pd.read_csv(Directory + '/data/DateDistric.csv')
@@ -32,13 +33,19 @@ def DateDistric():
         print(filename[:5].split('-'))
         print(' ')
 
+        infected_filename = filename[:5]+'DC.csv'
+
         df = pd.read_csv(Directory + '/data/Hospital/' + filename)
+        infected_df = pd.read_csv(Directory + '/data/District/' + infected_filename)
+
         #count = 0
         district_df = pd.DataFrame(
-            columns=['ID', 'Date', 'District', 'Suspected_Local', 'Suspected_Foreign', 'Suspected_Total'])
+            columns=['ID', 'Date', 'District', 'Suspected_Local', 'Suspected_Foreign', 'Suspected_Total','TotalInfected'])
         for district in hospital_map.keys():
             #print(district)
             list_hospitals = hospital_map[district]
+            dis_row = infected_df.loc[infected_df.District == district.upper()]
+
             sl_today = 0
             for_today = 0
             total_today = 0
@@ -61,7 +68,9 @@ def DateDistric():
                                 'District':district,
                                 'Suspected_Local':sl_today,
                                 'Suspected_Foreign':for_today,
-                                'Suspected_Total':total_today},ignore_index=True)
+                                'Suspected_Total':total_today,
+                                'TotalInfected': int(dis_row.at[dis_row.index[0], 'Count'])
+                                },ignore_index=True)
 
             #count += 1
             #print('array data',[month+day+'_'+district,
