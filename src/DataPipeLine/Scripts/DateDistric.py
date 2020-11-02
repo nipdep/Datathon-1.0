@@ -8,6 +8,7 @@ def split(word):
     return [char for char in word]
 
 def DateDistric():
+    '''
     if (not os.path.exists(Directory + '/data/DateDistric.csv')):
         # date_distric_df = pd.DataFrame(columns=['ID','Date','District','Suspected_Local','Suspected_Foreign','Suspected_Total','Temperature','Immobility']).to_csv(Directory+'/data/DateDistric.csv')
         date_distric_df = pd.DataFrame(
@@ -15,6 +16,10 @@ def DateDistric():
         #date_distric_df.to_csv(Directory + '/data/DateDistric.csv')
     else:
         date_distric_df = pd.read_csv(Directory + '/data/DateDistric.csv')
+    '''
+
+    date_distric_df = pd.DataFrame(
+        columns=['ID', 'Date', 'District', 'Suspected_Local', 'Suspected_Foreign', 'Suspected_Total', 'TotalInfected'])
 
     try:
         with open(Directory + '/data/maps/hospital_map.json', 'r') as f:
