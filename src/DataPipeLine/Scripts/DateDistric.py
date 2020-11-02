@@ -90,6 +90,6 @@ def DateDistric():
         #print(date_distric_df)
         print('*** \n \n')
     print(date_distric_df)
-    date_distric_df.to_csv(Directory + '/data/DateDistric.csv')
+    date_distric_df.to_csv(Directory + '/data/main_data/DateDistric.csv')
 
 DateDistric()

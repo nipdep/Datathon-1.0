@@ -9,13 +9,13 @@ def split(word):
 
 def DateDistricUpdate(date = dateformat()):
     log = {}
-    if (not os.path.exists(Directory + '/data/DateDistric.csv')):
+    if (not os.path.exists(Directory + '/data/main_data/DateDistric.csv')):
         # date_distric_df = pd.DataFrame(columns=['ID','Date','District','Suspected_Local','Suspected_Foreign','Suspected_Total','Temperature','Immobility']).to_csv(Directory+'/data/DateDistric.csv')
         date_distric_df = pd.DataFrame(
             columns=['ID', 'Date', 'District', 'Suspected_Local', 'Suspected_Foreign', 'Suspected_Total'])
         #date_distric_df.to_csv(Directory + '/data/DateDistric.csv')
     else:
-        date_distric_df = pd.read_csv(Directory + '/data/DateDistric.csv')
+        date_distric_df = pd.read_csv(Directory + '/data/main_data/DateDistric.csv')
 
     try:
         with open(Directory + '/data/maps/hospital_map.json', 'r') as f:
@@ -82,6 +82,6 @@ def DateDistricUpdate(date = dateformat()):
     log['Total_size'] = len(date_distric_df)
     print(date_distric_df)
 
-    date_distric_df.to_csv(Directory + '/data/DateDistric.csv')
+    date_distric_df.to_csv(Directory + '/data/main_data/DateDistric.csv')
     log['success'] = True
     return(log)

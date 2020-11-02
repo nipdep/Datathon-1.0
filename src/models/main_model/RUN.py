@@ -19,11 +19,12 @@ warnings.simplefilter('ignore')
 
 import matplotlib.pyplot as plt
 
+Directory = 'F:/Deeplearning/Datathon-1.0'
 
-daily_df = pd.read_csv('../../../data/main_data/DateDistric.csv')
-info_df = pd.read_csv('../../../data/main_data/Info.csv')
-district_dt_df = pd.read_csv('../../../data/geo_mode_data/test.csv')
-police_df = pd.read_csv('../../../data/main_data/police_report.csv')
+daily_df = pd.read_csv(Directory+'/data/main_data/DateDistric.csv')
+info_df = pd.read_csv(Directory+'/data/main_data/Info.csv')
+district_dt_df = pd.read_csv(Directory+'/data/geo_mode_data/test.csv')
+police_df = pd.read_csv(Directory+'/data/main_data/police_report.csv')
 
 
 
@@ -384,3 +385,4 @@ res_1 = arima_test.train()
 rfr = RFRWalkingForward()
 rfr.train(train_df)
 res_2 = rfr.predict(test_df)
+print(res_2)
